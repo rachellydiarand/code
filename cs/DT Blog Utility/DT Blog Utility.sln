@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DT Blog Utility", "DT Blog Utility\DT Blog Utility.csproj", "{0FAED71F-CF68-4E24-B137-4A6139AA807F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MothPictureViewer", "MothPictureViewer\MothPictureViewer.csproj", "{4E82273C-8B04-4890-90F2-27DB802C9165}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MothClock", "MothClock\MothClock.csproj", "{1FAE5FBC-DF11-4731-8F98-BE6B1BBE8B5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MothBLogCamera", "MothBLogCamera\MothBLogCamera.csproj", "{2CB8C1D0-8CD5-4F87-A9AB-33E7E4CA3079}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FAED71F-CF68-4E24-B137-4A6139AA807F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FAED71F-CF68-4E24-B137-4A6139AA807F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FAED71F-CF68-4E24-B137-4A6139AA807F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FAED71F-CF68-4E24-B137-4A6139AA807F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E82273C-8B04-4890-90F2-27DB802C9165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E82273C-8B04-4890-90F2-27DB802C9165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E82273C-8B04-4890-90F2-27DB802C9165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E82273C-8B04-4890-90F2-27DB802C9165}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FAE5FBC-DF11-4731-8F98-BE6B1BBE8B5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FAE5FBC-DF11-4731-8F98-BE6B1BBE8B5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FAE5FBC-DF11-4731-8F98-BE6B1BBE8B5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FAE5FBC-DF11-4731-8F98-BE6B1BBE8B5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CB8C1D0-8CD5-4F87-A9AB-33E7E4CA3079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CB8C1D0-8CD5-4F87-A9AB-33E7E4CA3079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CB8C1D0-8CD5-4F87-A9AB-33E7E4CA3079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CB8C1D0-8CD5-4F87-A9AB-33E7E4CA3079}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBC95A08-DD10-47E3-AAA1-8161CA72795D}
+	EndGlobalSection
+EndGlobal
