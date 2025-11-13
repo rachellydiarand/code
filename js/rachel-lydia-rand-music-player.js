@@ -11,8 +11,9 @@ var playlist = [];
 var playlistIndex = -1;
 var loopFlip = -1;
 var executionLoopInterval = -1;
-
 var setListCurrentIndex = 0;
+var loopLeftTime = 0;
+var loopRightTime = 0;
 
 var setList = [[ 
 	'C:/_rachel/mp3/daLibrary/audio/libraryRand/Billy Joel/03 Greatest Hits/2-08 Allentown.mp3',
@@ -252,6 +253,42 @@ function executionLoopIntervalEvent() {
 			playNextRadioFile();
 		}
 	}
+	if($("#checkboxCustomLoop").is(":checked")) {
+		if(player.currentTime > loopRightTime && loopRightTime > 0) {
+			if(loopLeftTime > 0) {
+				player.currentTime = loopLeftTime;
+			}
+		}
+	}
 }
 
-executionLoopInterval = setInterval(executionLoopIntervalEvent, 500);
+function roundTime(n) {
+	n = n * 1000;
+	n = Math.round(n);
+	n = n / 1000;
+	return n;
+}
+
+function makeTimeString(n) {
+	var minutes = Math.floor(Math.round(n) / 60);
+	var seconds = Math.round(n) - (minutes * 60);
+	//n = roundTime(n);// milliseconds ?
+	var secondsStr = seconds;
+	if(seconds < 10) {
+		secondsStr = "0" + seconds;
+	}
+	return minutes + ":" + secondsStr;
+}
+
+function setLoopLeft() {
+	var player = document.getElementById('mp3player');
+	loopLeftTime = player.currentTime;
+	$("#buttonSetLoopLeft").html("Set Loop Left ( " + makeTimeString(loopLeftTime) + " )");
+}
+function setLoopRight() {
+	var player = document.getElementById('mp3player');
+	loopRightTime = player.currentTime;
+	$("#buttonSetLoopRight").html("Set Loop Right ( " + makeTimeString(loopRightTime) + " )");
+}
+
+executionLoopInterval = setInterval(executionLoopIntervalEvent, 60);

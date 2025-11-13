@@ -47,6 +47,7 @@
 	
 	
 	$cwd = getcwd();
+	//echo 'alert("' . $cwd . '");';
 	
 	
 	echo "\r\n\r\n";
@@ -67,13 +68,13 @@
 	}
 	
 		
-	$myMultiDimArray = readTheDir($cwd . '\\music\\', '/for/music');
+	$myMultiDimArray = readTheDir($cwd, '/music');
 	parseMultiDimArray($myMultiDimArray);
 	//$myMultiDimArray = readTheDir($cwd . '/musicFolder', '/musicFolder');
 	//parseMultiDimArray($myMultiDimArray);
 	
 	
-	echo count($myMultiDimArray);
+	//echo count($myMultiDimArray);
 	
 	
 	
