@@ -100,7 +100,7 @@ function addElement()
 	var w = parseInt($("#newElementWidth").val());
 	var h = parseInt($("#newElementHeight").val());
 	var letter =  $("#newElementLetter").val().toUpperCase();
-	elementImageQ = '/moth/images/moth48/MOTH48' + letter + '.png';
+	elementImageQ = '/ms-rand/images/moth48/moth48' + letter + '.png';
 	
 	elementCount++;
 	
