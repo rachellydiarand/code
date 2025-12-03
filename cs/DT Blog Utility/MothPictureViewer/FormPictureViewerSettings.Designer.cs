@@ -34,6 +34,8 @@
             this.textBoxImageCopyOffsetX = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxImageCopyOffsetY = new System.Windows.Forms.TextBox();
+            this.textBoxBackgroundColor = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -88,11 +90,30 @@
             this.textBoxImageCopyOffsetY.TabIndex = 5;
             this.textBoxImageCopyOffsetY.TextChanged += new System.EventHandler(this.textBoxImageCopyOffsetY_TextChanged);
             // 
+            // textBoxBackgroundColor
+            // 
+            this.textBoxBackgroundColor.Location = new System.Drawing.Point(128, 71);
+            this.textBoxBackgroundColor.Name = "textBoxBackgroundColor";
+            this.textBoxBackgroundColor.Size = new System.Drawing.Size(44, 20);
+            this.textBoxBackgroundColor.TabIndex = 7;
+            this.textBoxBackgroundColor.TextChanged += new System.EventHandler(this.textBoxBackgroundColor_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(92, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Background Color";
+            // 
             // FormPictureViewerSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(619, 96);
+            this.Controls.Add(this.textBoxBackgroundColor);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxImageCopyOffsetY);
             this.Controls.Add(this.textBoxImageCopyOffsetX);
             this.Controls.Add(this.label2);
@@ -115,5 +136,7 @@
         private System.Windows.Forms.TextBox textBoxImageCopyOffsetX;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxImageCopyOffsetY;
+        private System.Windows.Forms.TextBox textBoxBackgroundColor;
+        private System.Windows.Forms.Label label3;
     }
 }

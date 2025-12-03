@@ -190,7 +190,7 @@ namespace DT_Blog_Utility
                 List<string> imgFiles = new List<string>();
                 foreach (var file in SourceImages)
                 {
-                    if (file.ToLower().IndexOf(".jpg") != -1 || file.ToLower().IndexOf(".png") != -1)
+                    if (file.ToLower().IndexOf(".jpg") != -1 || file.ToLower().IndexOf(".png") != -1 || file.ToLower().IndexOf(".gif") != -1)
                     {
                         imgFiles.Add(file);
                     }
@@ -782,12 +782,12 @@ namespace DT_Blog_Utility
                 }
                 else
                 {
-                    return "<a target=\"_rlr\" href=\"" + ConvertWindowsPathToUrl(imgUrl) + "\"><img src=\"." + ConvertWindowsPathToUrl(thumbnail) + "\" class=\"imageBorder\" /></a>";
+                    return "<a target=\"_rlr\" href=\"" + ConvertWindowsPathToUrl(imgUrl) + "\"><img src=\"" + ConvertWindowsPathToUrl(thumbnail) + "\" class=\"imageBorder\" /></a>";
                 }
             }
             else
             {
-                return "<img src=\"." + ConvertWindowsPathToUrl(imgUrl) + "\" class=\"imageBorder\" />";
+                return "<img src=\"" + ConvertWindowsPathToUrl(imgUrl) + "\" class=\"imageBorder\" />";
             }
         }
 

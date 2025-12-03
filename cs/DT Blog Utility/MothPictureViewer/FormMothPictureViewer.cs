@@ -83,6 +83,8 @@ namespace MothPictureViewer
                 mInstance = this;               
             }
 
+            DoubleBuffered = true;
+
             ThisForm = this;
             ThisForm.BackColor = Color.AntiqueWhite;
             ThisForm.KeyPreview = true;
@@ -479,6 +481,67 @@ namespace MothPictureViewer
             return i;
         }
 
+        private void UpdateSelectionBox(Rectangle r)
+        {
+            int dashLength = 6;
+
+            using (Graphics g = SelectionPictureBoxTop.CreateGraphics())
+            {
+                g.Clear(Color.Transparent);
+                SelectionPictureBoxTop.Width = r.Width;
+                SelectionPictureBoxTop.Height = 1;
+                SelectionPictureBoxTop.Left = r.Left;
+                SelectionPictureBoxTop.Top = r.Top;
+                for (int i = 0; i < r.Width; i += dashLength)
+                {
+                    // top
+                    g.DrawLine(new Pen(Color.Black, 1), i, 0, i + 3, 0);
+                    g.DrawLine(new Pen(Color.White, 1), i + 3, 0, i + 6, 0);
+                }
+            }
+
+            using (Graphics g = SelectionPictureBoxBottom.CreateGraphics())
+            {
+                SelectionPictureBoxBottom.Width = r.Width;
+                SelectionPictureBoxBottom.Height = 1;
+                SelectionPictureBoxBottom.Left = r.Left;
+                SelectionPictureBoxBottom.Top = r.Top + r.Height - 1;
+                for (int i = 0; i < r.Width; i += dashLength)
+                {
+                    g.DrawLine(new Pen(Color.White, 1), i, 0, i + 3, 0);
+                    g.DrawLine(new Pen(Color.Black, 1), i + 3, 0, i + 6, 0);
+                }
+            }
+
+            using (Graphics g = SelectionPictureBoxLeft.CreateGraphics())
+            {
+                SelectionPictureBoxLeft.Width = 2;
+                SelectionPictureBoxLeft.Height = r.Height;
+                SelectionPictureBoxLeft.Left = r.Left;
+                SelectionPictureBoxLeft.Top = r.Top;
+
+                for (int i = 0; i < r.Height; i += dashLength)
+                {
+                    g.DrawLine(new Pen(Color.White, 1), 0, i, 0, i + 3);
+                    g.DrawLine(new Pen(Color.Black, 1), 0, i + 3, 0, i + 6);
+                }
+            }
+
+            using (Graphics g = SelectionPictureBoxRight.CreateGraphics())
+            {
+                SelectionPictureBoxRight.Width = 1;
+                SelectionPictureBoxRight.Height = r.Height;
+                SelectionPictureBoxRight.Left = r.Left + r.Width - 1;
+                SelectionPictureBoxRight.Top = r.Top;
+
+                for (int i = 0; i < r.Height; i += dashLength)
+                {
+                    g.DrawLine(new Pen(Color.Black, 1), 0, i, 0, i + 3);
+                    g.DrawLine(new Pen(Color.White, 1), 0, i + 3, 0, i + 6);
+                }
+            }
+        }
+
         private void DoMouseMove(object sender = null, EventArgs args = null)
         {
             // still experimenting with the best way to capture mouse movement in this Environment/Language
@@ -607,64 +670,11 @@ namespace MothPictureViewer
                 }
 
                 Rectangle r = new Rectangle(xr, yr, w, h);
-                int dashLength = 6;
+                UpdateSelectionBox(r);
 
-                using (Graphics g = SelectionPictureBoxTop.CreateGraphics())
-                {
-                    g.Clear(Color.Transparent);
-                    SelectionPictureBoxTop.Width = r.Width;
-                    SelectionPictureBoxTop.Height = 1;
-                    SelectionPictureBoxTop.Left = r.Left;
-                    SelectionPictureBoxTop.Top = r.Top;
-                    for(int i = 0; i < r.Width; i += dashLength)
-                    {
-                        // top
-                        g.DrawLine(new Pen(Color.Black, 1), i, 0, i + 3, 0);
-                        g.DrawLine(new Pen(Color.White, 1), i + 3, 0, i + 6, 0);
-                    }
-                }
-
-                using (Graphics g = SelectionPictureBoxBottom.CreateGraphics())
-                {
-                    SelectionPictureBoxBottom.Width = r.Width;
-                    SelectionPictureBoxBottom.Height = 1;
-                    SelectionPictureBoxBottom.Left = r.Left;
-                    SelectionPictureBoxBottom.Top = r.Top + r.Height - 1;
-                    for (int i = 0; i < r.Width; i += dashLength)
-                    {
-                        g.DrawLine(new Pen(Color.White, 1), i, 0, i + 3, 0);
-                        g.DrawLine(new Pen(Color.Black, 1), i + 3, 0, i + 6, 0);
-                    }
-                }
-
-                using (Graphics g = SelectionPictureBoxLeft.CreateGraphics())
-                {
-                    SelectionPictureBoxLeft.Width = 2;
-                    SelectionPictureBoxLeft.Height = r.Height;
-                    SelectionPictureBoxLeft.Left = r.Left;
-                    SelectionPictureBoxLeft.Top = r.Top;
-
-                    for (int i = 0; i < r.Height; i += dashLength)
-                    {
-                        g.DrawLine(new Pen(Color.White, 1), 0, i, 0, i + 3);
-                        g.DrawLine(new Pen(Color.Black, 1), 0, i + 3, 0, i + 6);
-                    }
-                }
-
-                using (Graphics g = SelectionPictureBoxRight.CreateGraphics())
-                {
-                    SelectionPictureBoxRight.Width = 1;
-                    SelectionPictureBoxRight.Height = r.Height;
-                    SelectionPictureBoxRight.Left = r.Left + r.Width - 1;
-                    SelectionPictureBoxRight.Top = r.Top;
-
-                    for (int i = 0; i < r.Height; i += dashLength)
-                    {
-                        g.DrawLine(new Pen(Color.Black, 1), 0, i, 0, i + 3);
-                        g.DrawLine(new Pen(Color.White, 1), 0, i + 3, 0, i + 6);
-                    }
-                }
-
+                // update the boxes in the lower right
+                textBoxSelectionWidth.Text = r.Width.ToString();
+                textBoxSelectionHeight.Text = r.Height.ToString();
 
 
                 //using (Graphics g = TopLayerLabelForEventsAndDrawing.CreateGraphics())
@@ -1399,6 +1409,159 @@ namespace MothPictureViewer
                 img.Save(fileName, ImageFormat.Png);
 
                 Process.Start(fileName);
+            }
+        }
+
+        private void WriteSelectionRectangleToClipboard(Size widthAndHeightSize)
+        {
+            // used before we switched the OnEnterFrame to the master form
+            //if((sender as PictureBox).Image == null) return;// just a test, we'll want to drag if the selection box too
+
+            // tried Math.Abs here but a negative input vector returns a zero :-(
+            int widthProp = widthAndHeightSize.Width;
+            int heightProp = widthAndHeightSize.Height;
+
+            // There is a solution! Math.Abs() failed and returned a zero for negative values!
+            if (widthProp < 0) widthProp *= -1;
+            if (heightProp < 0) heightProp *= -1;
+
+            // more sanity!
+            if (widthProp < 4) widthProp = 4;
+            if (heightProp < 4) heightProp = 4;
+
+            //SelectionPictureBox.Left = StartDragPoint.X;
+            //SelectionPictureBox.Top = StartDragPoint.Y;
+            //SelectionPictureBox.Width = widthProp;
+            //SelectionPictureBox.Height = heightProp;
+
+            //if(xmn - StartDragPoint.X < 0)
+            //{
+            //    SelectionPictureBox.Left = StartDragPoint.X - widthProp;
+            //}
+            //if(ymn  - StartDragPoint.Y < 0)
+            //{
+            //    SelectionPictureBox.Top = StartDragPoint.Y - heightProp;
+            //}
+
+            int w = widthProp;// SelectionPictureBox.Width;
+            int h = heightProp;// SelectionPictureBox.Height;
+
+            // now (next version of this code), we'll create a rectangle object here so we can just draw that directely to the top label control where we capture mouse events
+
+            int xr = StartDragPoint.X;
+            int yr = StartDragPoint.Y;
+            if (xr > StartDragPoint.X)
+            {
+                // we use StartDrawPoint.X as the left anchor
+                xr = StartDragPoint.X;
+            }
+            if (yr > StartDragPoint.Y)
+            {
+                yr = StartDragPoint.Y;
+            }
+
+            Rectangle r = new Rectangle(xr, yr, w, h);
+            UpdateSelectionBox(r);
+
+            // copy to clipboard
+
+            // we copied this from another method
+            // and now disabling this because we just
+            // defined the new width and height
+            // with the textboxes, right?
+            //int w = Abs(EndDragPoint.X - StartDragPoint.X);
+            //int h = Abs(EndDragPoint.Y - StartDragPoint.Y);
+
+            if (w == 0 || h == 0) return;
+
+            Bitmap bmp = new Bitmap(w, h);
+
+            int x = StartDragPoint.X + Properties.Settings.Default.ImageCopyOffsetX;
+            int y = StartDragPoint.Y + Properties.Settings.Default.ImageCopyOffsetY;
+
+            if (EndDragPoint.X < x) x = EndDragPoint.X;
+            if (EndDragPoint.Y < y) y = EndDragPoint.Y;
+
+            // apply the offset
+            x += Properties.Settings.Default.ImageCopyOffsetX;
+            y += Properties.Settings.Default.ImageCopyOffsetY;
+
+            // Draw the screenshot into our bitmap.
+
+            // Determine the size of the "virtual screen", which includes all monitors.
+            int screenLeft = SystemInformation.VirtualScreen.Left;//SystemInformation.VirtualScreen.Left;
+            int screenTop = SystemInformation.VirtualScreen.Top;
+            int screenWidth = SystemInformation.VirtualScreen.Width;
+            int screenHeight = SystemInformation.VirtualScreen.Height;
+
+            // this.ClientRectangle.Left
+            int xBound = this.Location.X + this.ClientRectangle.Left + x;// + Pb.Left + (SelectionPictureBox.Left - Pb.Left) + 1;
+            int yBound = this.Location.Y + ClientRectangle.Top + y;// + Pb.Top + (SelectionPictureBox.Top - Pb.Top) + 1;
+
+            r = new Rectangle(
+            xBound,
+            yBound,
+            w,
+            h);
+
+            if (r.X + r.Width <= screenWidth &&
+                r.Y + r.Height <= screenHeight)
+            {
+                // we need to hide the selection picture box
+                // we are copying graphics from the multi-monitor display to this bitmap to go on the clipboard
+                //SelectionPictureBox.Visible = false;
+                //SelectionPictureBox.Refresh();
+
+                using (Graphics g = Graphics.FromImage(bmp))
+                {
+                    g.CopyFromScreen(r.Left, r.Top, 0, 0, new Size(r.Width, r.Height));
+                    Clipboard.SetImage(bmp);
+                }
+
+                // set it back to visible
+                SelectionPictureBoxTop.Visible = true;
+                SelectionPictureBoxBottom.Visible = true;
+                SelectionPictureBoxLeft.Visible = true;
+                SelectionPictureBoxRight.Visible = true;
+                PutSelectionPictureBoxesOnTop();
+            }
+
+        }
+
+        private void textBoxSelectionHeight_TextChanged(object sender, EventArgs e)
+        {
+            if(!SelectionDragging)
+            {
+                Size s = new Size();
+                try
+                {
+                    s.Width = int.Parse(textBoxSelectionWidth.Text);
+                    s.Height = int.Parse(textBoxSelectionHeight.Text);
+                    WriteSelectionRectangleToClipboard(s);
+                } catch(Exception ex)
+                {
+                    Debug.WriteLine("Selection Size Manual Resize failed....");
+                }
+                
+            }
+        }
+
+        private void textBoxSelectionWidth_TextChanged(object sender, EventArgs e)
+        {
+            if (!SelectionDragging)
+            {
+                Size s = new Size();
+                try
+                {
+                    s.Width = int.Parse(textBoxSelectionWidth.Text);
+                    s.Height = int.Parse(textBoxSelectionHeight.Text);
+                    WriteSelectionRectangleToClipboard(s);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Selection Size Manual Resize failed....");
+                }
+
             }
         }
     }

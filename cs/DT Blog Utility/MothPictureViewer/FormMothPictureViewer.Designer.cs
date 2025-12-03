@@ -50,6 +50,8 @@
             this.flipVerticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rotate90DegreesClockwiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rotate90DegreesCounterClockwiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBoxSelectionHeight = new System.Windows.Forms.TextBox();
+            this.textBoxSelectionWidth = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,31 +88,31 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.printToolStripMenuItem.Text = "Print";
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -119,8 +121,6 @@
             this.oneHundredPercentToolStripMenuItem.Name = "oneHundredPercentToolStripMenuItem";
             this.oneHundredPercentToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.oneHundredPercentToolStripMenuItem.Text = "100%";
-            // disabled, we are now making this a multi item drop down instead of single click on the item group
-            //this.oneHundredPercentToolStripMenuItem.Click += new System.EventHandler(this.oneHundredPercentToolStripMenuItem_Click);
             // 
             // bestFitToolStripMenuItem
             // 
@@ -170,14 +170,14 @@
             // pasteToolStripMenuItem1
             // 
             this.pasteToolStripMenuItem1.Name = "pasteToolStripMenuItem1";
-            this.pasteToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.pasteToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
             this.pasteToolStripMenuItem1.Text = "Paste";
             this.pasteToolStripMenuItem1.Click += new System.EventHandler(this.pasteToolStripMenuItem1_Click);
             // 
             // pasteInPlaceToolStripMenuItem
             // 
             this.pasteInPlaceToolStripMenuItem.Name = "pasteInPlaceToolStripMenuItem";
-            this.pasteInPlaceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pasteInPlaceToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.pasteInPlaceToolStripMenuItem.Text = "Paste in Place";
             this.pasteInPlaceToolStripMenuItem.Click += new System.EventHandler(this.pasteInPlaceToolStripMenuItem_Click);
             // 
@@ -220,11 +220,31 @@
             this.rotate90DegreesCounterClockwiseToolStripMenuItem.Text = "Rotate 90 degrees Counter-Clockwise";
             this.rotate90DegreesCounterClockwiseToolStripMenuItem.Click += new System.EventHandler(this.rotate90DegreesCounterClockwiseToolStripMenuItem_Click);
             // 
+            // textBoxSelectionHeight
+            // 
+            this.textBoxSelectionHeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSelectionHeight.Location = new System.Drawing.Point(753, 429);
+            this.textBoxSelectionHeight.Name = "textBoxSelectionHeight";
+            this.textBoxSelectionHeight.Size = new System.Drawing.Size(46, 20);
+            this.textBoxSelectionHeight.TabIndex = 1;
+            this.textBoxSelectionHeight.TextChanged += new System.EventHandler(this.textBoxSelectionHeight_TextChanged);
+            // 
+            // textBoxSelectionWidth
+            // 
+            this.textBoxSelectionWidth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSelectionWidth.Location = new System.Drawing.Point(703, 429);
+            this.textBoxSelectionWidth.Name = "textBoxSelectionWidth";
+            this.textBoxSelectionWidth.Size = new System.Drawing.Size(46, 20);
+            this.textBoxSelectionWidth.TabIndex = 2;
+            this.textBoxSelectionWidth.TextChanged += new System.EventHandler(this.textBoxSelectionWidth_TextChanged);
+            // 
             // FormMothPictureViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBoxSelectionWidth);
+            this.Controls.Add(this.textBoxSelectionHeight);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -261,5 +281,7 @@
         private System.Windows.Forms.ToolStripMenuItem rotate90DegreesCounterClockwiseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem pasteInPlaceToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBoxSelectionHeight;
+        private System.Windows.Forms.TextBox textBoxSelectionWidth;
     }
 }

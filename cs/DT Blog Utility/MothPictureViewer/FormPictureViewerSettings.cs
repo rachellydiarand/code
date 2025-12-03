@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,12 @@ namespace MothPictureViewer
 
             textBoxImageCopyOffsetX.Text = Properties.Settings.Default.ImageCopyOffsetX.ToString();
             textBoxImageCopyOffsetY.Text = Properties.Settings.Default.ImageCopyOffsetY.ToString();
+
+            string colorStr = Properties.Settings.Default.BackgroundColor;
+            if(!string.IsNullOrEmpty(colorStr))
+            {
+                textBoxBackgroundColor.Text = colorStr;
+            }
         }
 
         private void buttonImageSaveDirectoryBrowse_Click(object sender, EventArgs e)
@@ -81,6 +88,34 @@ namespace MothPictureViewer
             catch (Exception ex)
             {
 
+            }
+        }
+
+        public static Color GetColorFromHexString(string hexColor)
+        {
+            // Ensure the string starts with '#' for proper parsing
+            if (!hexColor.StartsWith("#"))
+            {
+                hexColor = "#" + hexColor;
+            }
+
+            // Convert the hex string to a Color object
+            Color color = ColorTranslator.FromHtml(hexColor);
+            return color;
+        }
+
+        private void textBoxBackgroundColor_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Color c = GetColorFromHexString(textBoxBackgroundColor.Text);
+                Properties.Settings.Default.BackgroundColor = textBoxBackgroundColor.Text;
+                Properties.Settings.Default.Save();
+                FormMothPictureViewer.Instance.BackColor = c;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Settings: Color string was invalid.");
             }
         }
     }
