@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -383,11 +384,15 @@ namespace DT_Blog_Utility
 
         private void buttonResizeImage_Click(object sender, EventArgs e)
         {
+            // 2025-12-31 - Still need to handle the file extension change when adding to blog
+
             if(SourceImages.Count < 1 ||  SourceImagesCurrentImageIndex > SourceImages.Count - 1)
             {
                 MessageBox.Show("No source image selected.");
                 return;
             }
+            ImageFormat fmt;
+            string newFilename;
             var img = System.Drawing.Image.FromFile(SourceImages[SourceImagesCurrentImageIndex]);
             System.Drawing.Image imageResized = null;
             string destFilename = DESTINATION_FILENAME_ACCESSOR;
@@ -409,7 +414,16 @@ namespace DT_Blog_Utility
             {
                 if(MessageBox.Show("No resize defined.  This will just copy image to destination folder (and rename if defined). Proceed?", "Proceed with Image Copy", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    img.Save(DESTINATION_FILENAME_ACCESSOR);
+                    newFilename = DESTINATION_FILENAME_ACCESSOR;
+                    fmt = img.RawFormat;
+                    if(checkBoxSaveAsJpg.Checked)
+                    {
+                        FileInfo fi = new FileInfo(DESTINATION_FILENAME_ACCESSOR);
+                        newFilename = fi.FullName.Substring(0, fi.FullName.Length - ext.Length) + ".jpg";
+                        fmt = ImageFormat.Jpeg;
+                    }
+
+                    img.Save(newFilename);//, fmt);
                     MessageBox.Show("File moved from source to destination.");
                     return;
                 }
@@ -435,7 +449,16 @@ namespace DT_Blog_Utility
 
             if(checkBoxCopySourceImageToDestination.Checked)
             {
-                img.Save(destFilename);
+                newFilename = DESTINATION_FILENAME_ACCESSOR;
+                fmt = imageResized.RawFormat;
+                if (checkBoxSaveAsJpg.Checked)
+                {
+                    FileInfo fi = new FileInfo(DESTINATION_FILENAME_ACCESSOR);
+                    newFilename = fi.FullName.Substring(0, fi.FullName.Length - ext.Length) + ".jpg";
+                    fmt = ImageFormat.Jpeg;
+                }
+
+                img.Save(newFilename);//, fmt);
             }
 
             int w = imageResized.Width;
@@ -443,7 +466,14 @@ namespace DT_Blog_Utility
             string imageSizeExtension = textBoxFileNameSizeConcatenator.Text + w.ToString() + "x" + h.ToString() + ext;
 
             destFilename = destFilename.Substring(0, destFilename.IndexOf(ext)) + imageSizeExtension;
-            imageResized.Save(destFilename);
+            fmt = imageResized.RawFormat;
+            if (checkBoxSaveAsJpg.Checked)
+            {
+                FileInfo fi = new FileInfo(destFilename);
+                destFilename = fi.FullName.Substring(0, fi.FullName.Length - ext.Length) + ".jpg";
+                fmt = ImageFormat.Jpeg;
+            }
+            imageResized.Save(destFilename);//, fmt);
 
             MessageBox.Show("Resize Comlete!");
         }
@@ -1796,6 +1826,27 @@ namespace DT_Blog_Utility
             MessageBox.Show("Site Base Path did not contain .php files to publish to .html files.");
 
             
+        }
+
+        private void buttonOpenSiteBaseFolder_Click(object sender, EventArgs e)
+        {
+            string folderPath = textBoxSiteBaseFolder.Text;
+
+            if (System.IO.Directory.Exists(folderPath))
+            {
+                // Use the folder path directly with Process.Start
+                // The "useShellExecute = true" is important for .NET Core/.NET 5+ apps
+                var processStartInfo = new System.Diagnostics.ProcessStartInfo(folderPath)
+                {
+                    UseShellExecute = true,
+                    Verb = "open"
+                };
+                System.Diagnostics.Process.Start(processStartInfo);
+            }
+            else
+            {
+                Console.WriteLine("Directory does not exist!");
+            }
         }
     }
 }

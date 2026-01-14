@@ -63,6 +63,11 @@ namespace MothPictureViewer
 
         private GraphicalOverlay graphicalOverlay { get; set; }
 
+        private bool SlideshowOn { get; set; }
+        private DateTime SlideShowStartTime { get; set; }
+        private int SlideshowCurrentImageIndex { get; set; }
+
+
 
         public static FormMothPictureViewer Instance
         {
@@ -259,7 +264,10 @@ namespace MothPictureViewer
             }
             set
             {
+                if (value == null) return;
                 PbList.Add(value);
+                value.Enabled = false;
+                value.Name = "Pb";
                 CurrentPictureBox = value;// PbList[PbList.Count - 1];
             }
         }
@@ -304,6 +312,35 @@ namespace MothPictureViewer
             //}
 
             DoMouseMove();
+            DoSlideShow();
+        }
+
+        private void DoSlideShow()
+        {
+            if (!SlideshowOn || string.IsNullOrEmpty(ImgDirectory)) return;
+            TimeSpan ts = TimeSpan.Parse(DateTime.Now.Subtract(SlideShowStartTime).ToString());
+            if (ts.TotalMilliseconds > (double) Properties.Settings.Default.SlideshowTimingMilliseconds)
+            {
+                SlideshowCurrentImageIndex++;
+                var files = EnumerateFileDirectory();
+                if(SlideshowCurrentImageIndex > files.Count - 1)
+                {
+                    SlideshowCurrentImageIndex = 0;
+                }
+                Img = Image.FromFile(files[SlideshowCurrentImageIndex]);
+                if (Img != null)
+                {
+                    Pb.Image = Img;
+                    BestFit();
+
+                    ImgDirectoryIndex = SlideshowCurrentImageIndex;
+                    CurrentImageFullName = files[SlideshowCurrentImageIndex];
+                    var fi = new FileInfo(CurrentImageFullName);
+                    textBoxRename.Text = fi.Name;
+                }
+                SlideShowStartTime = DateTime.Now;
+            }
+
         }
 
         private void DoMouseMoveGetCoordinates(object sender, MouseEventArgs e)
@@ -357,6 +394,7 @@ namespace MothPictureViewer
                     FileInfo fi = new FileInfo(file);
                     ImgDirectory = fi.DirectoryName;
                     CurrentImageFullName = fi.FullName;
+                    textBoxRename.Text = fi.Name;
                 }
             }
             Pb.Image = Img;
@@ -395,6 +433,7 @@ namespace MothPictureViewer
             // stop dragging
             if(clickedControl != null && e.Button == MouseButtons.Left)
             {
+                //MessageBox.Show("detecting drag!");
                 // continue with the old code to start drag etc...
                 // may want the if condition here if we want to do something else on a click!
 
@@ -408,7 +447,10 @@ namespace MothPictureViewer
                 if (clickedControl.Name == "Pb")
                 {
                     // we are dragging the picture itself
+                    Pb = clickedControl as PictureBox;
+                    CurrentImage = Pb.Image;
                     StartDragPbStartingPoint = new Point(Pb.Left, Pb.Top);
+                    Pb.BringToFront();
                     Dragging = true;
                     Cursor = Cursors.Hand;
                 }
@@ -1262,6 +1304,8 @@ namespace MothPictureViewer
 
                 ImgDirectoryIndex = currentIndex;
                 CurrentImageFullName = files[currentIndex];
+                var fi2 = new FileInfo(CurrentImageFullName);
+                textBoxRename.Text = fi2.Name;
             }
         }
 
@@ -1296,6 +1340,8 @@ namespace MothPictureViewer
 
                 ImgDirectoryIndex = currentIndex;
                 CurrentImageFullName = files[currentIndex];
+                var fi2 = new FileInfo(CurrentImageFullName);
+                textBoxRename.Text = fi2.Name;
             }
         }
 
@@ -1375,6 +1421,7 @@ namespace MothPictureViewer
                 //Process.Start(fileName);
 
                 Pb = new PictureBox();
+                Pb.Name = "Pb";
                 //Pb.Image = img;
                 Img = img;
                 this.Controls.Add(Pb);
@@ -1563,6 +1610,62 @@ namespace MothPictureViewer
                 }
 
             }
+        }
+
+        private void slideshowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine(sender.GetType());
+            ToolStripMenuItem control = (sender as ToolStripMenuItem);
+            SlideshowOn = !SlideshowOn;// I use some shortcuts like this now.  Started at about 15 years of programming.  It means opposite in this instance/way.
+            if(SlideshowOn)
+            {
+                control.BackColor = Color.Green;
+                control.ForeColor = Color.White;
+                SlideShowStartTime = DateTime.Now;
+                SlideshowCurrentImageIndex = ImgDirectoryIndex;
+            }
+            else
+            {
+                control.BackColor = DefaultBackColor;
+                control.ForeColor = DefaultForeColor;
+            }
+
+            // slideshow action handled by execution loop timer listener
+            // ei Enter Frame Event
+        }
+
+        private void buttonRename_Click(object sender, EventArgs e)
+        {
+            if(!File.Exists(CurrentImageFullName))
+            {
+                MessageBox.Show("Image could not be found.");
+                return;
+            }
+
+            try
+            {
+                // going to just create a new image and open it
+                var fi = new FileInfo(CurrentImageFullName);
+                string newFileName = Path.Combine(fi.DirectoryName, textBoxRename.Text);
+                File.Copy(fi.FullName, newFileName);
+                CurrentImageFullName = newFileName;
+                if(Img != null)
+                {
+                    Img.Dispose();
+                }
+                Img = Image.FromFile(CurrentImageFullName);
+                if (Img != null)
+                {
+                    Pb.Image = Img;
+                    BestFit();
+                }
+                File.Delete(fi.FullName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not rename file. Is your suggestion a valid file name? " + ex.Message);
+            }
+            
         }
     }
 }

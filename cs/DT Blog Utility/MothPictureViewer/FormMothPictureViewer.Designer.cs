@@ -50,8 +50,11 @@
             this.flipVerticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rotate90DegreesClockwiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rotate90DegreesCounterClockwiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.slideshowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBoxSelectionHeight = new System.Windows.Forms.TextBox();
             this.textBoxSelectionWidth = new System.Windows.Forms.TextBox();
+            this.textBoxRename = new System.Windows.Forms.TextBox();
+            this.buttonRename = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +69,8 @@
             this.nextToolStripMenuItem,
             this.screenshotToolStripMenuItem,
             this.pasteToolStripMenuItem,
-            this.transformToolStripMenuItem});
+            this.transformToolStripMenuItem,
+            this.slideshowToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -88,31 +92,31 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.printToolStripMenuItem.Text = "Print";
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -220,6 +224,13 @@
             this.rotate90DegreesCounterClockwiseToolStripMenuItem.Text = "Rotate 90 degrees Counter-Clockwise";
             this.rotate90DegreesCounterClockwiseToolStripMenuItem.Click += new System.EventHandler(this.rotate90DegreesCounterClockwiseToolStripMenuItem_Click);
             // 
+            // slideshowToolStripMenuItem
+            // 
+            this.slideshowToolStripMenuItem.Name = "slideshowToolStripMenuItem";
+            this.slideshowToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.slideshowToolStripMenuItem.Text = "Slideshow";
+            this.slideshowToolStripMenuItem.Click += new System.EventHandler(this.slideshowToolStripMenuItem_Click);
+            // 
             // textBoxSelectionHeight
             // 
             this.textBoxSelectionHeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -238,11 +249,32 @@
             this.textBoxSelectionWidth.TabIndex = 2;
             this.textBoxSelectionWidth.TextChanged += new System.EventHandler(this.textBoxSelectionWidth_TextChanged);
             // 
+            // textBoxRename
+            // 
+            this.textBoxRename.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxRename.Location = new System.Drawing.Point(0, 429);
+            this.textBoxRename.Name = "textBoxRename";
+            this.textBoxRename.Size = new System.Drawing.Size(269, 20);
+            this.textBoxRename.TabIndex = 3;
+            // 
+            // buttonRename
+            // 
+            this.buttonRename.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonRename.Location = new System.Drawing.Point(266, 427);
+            this.buttonRename.Name = "buttonRename";
+            this.buttonRename.Size = new System.Drawing.Size(59, 23);
+            this.buttonRename.TabIndex = 4;
+            this.buttonRename.Text = "Rename";
+            this.buttonRename.UseVisualStyleBackColor = true;
+            this.buttonRename.Click += new System.EventHandler(this.buttonRename_Click);
+            // 
             // FormMothPictureViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonRename);
+            this.Controls.Add(this.textBoxRename);
             this.Controls.Add(this.textBoxSelectionWidth);
             this.Controls.Add(this.textBoxSelectionHeight);
             this.Controls.Add(this.menuStrip1);
@@ -283,5 +315,8 @@
         private System.Windows.Forms.ToolStripMenuItem pasteInPlaceToolStripMenuItem;
         private System.Windows.Forms.TextBox textBoxSelectionHeight;
         private System.Windows.Forms.TextBox textBoxSelectionWidth;
+        private System.Windows.Forms.ToolStripMenuItem slideshowToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBoxRename;
+        private System.Windows.Forms.Button buttonRename;
     }
 }

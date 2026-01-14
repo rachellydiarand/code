@@ -534,5 +534,26 @@ namespace DT_Blog_Utility
         {
 
         }
+
+        private void buttonOpenSiteBaseFolder_Click(object sender, EventArgs e)
+        {
+            string folderPath = textBoxPublishDirectory.Text;
+
+            if (System.IO.Directory.Exists(folderPath))
+            {
+                // Use the folder path directly with Process.Start
+                // The "useShellExecute = true" is important for .NET Core/.NET 5+ apps
+                var processStartInfo = new System.Diagnostics.ProcessStartInfo(folderPath)
+                {
+                    UseShellExecute = true,
+                    Verb = "open"
+                };
+                System.Diagnostics.Process.Start(processStartInfo);
+            }
+            else
+            {
+                Console.WriteLine("Directory does not exist!");
+            }
+        }
     }
 }

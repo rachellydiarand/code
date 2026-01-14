@@ -47,6 +47,7 @@
             this.textBoxUrlMutation = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonCopyImages = new System.Windows.Forms.Button();
+            this.buttonOpenSiteBaseFolder = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -58,13 +59,13 @@
             this.label3.TabIndex = 12;
             this.label3.Text = "Files to Publish to HTML";
             // 
-            // listBoxFilesToPublish
+            // listBoxPagesToPublish
             // 
             this.listBoxPagesToPublish.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxPagesToPublish.FormattingEnabled = true;
             this.listBoxPagesToPublish.Location = new System.Drawing.Point(13, 50);
-            this.listBoxPagesToPublish.Name = "listBoxFilesToPublish";
+            this.listBoxPagesToPublish.Name = "listBoxPagesToPublish";
             this.listBoxPagesToPublish.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxPagesToPublish.Size = new System.Drawing.Size(693, 238);
             this.listBoxPagesToPublish.TabIndex = 11;
@@ -246,7 +247,7 @@
             this.buttonCopyImages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.buttonCopyImages.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCopyImages.ForeColor = System.Drawing.Color.White;
-            this.buttonCopyImages.Location = new System.Drawing.Point(483, 623);
+            this.buttonCopyImages.Location = new System.Drawing.Point(497, 623);
             this.buttonCopyImages.Name = "buttonCopyImages";
             this.buttonCopyImages.Size = new System.Drawing.Size(110, 23);
             this.buttonCopyImages.TabIndex = 26;
@@ -254,11 +255,24 @@
             this.buttonCopyImages.UseVisualStyleBackColor = false;
             this.buttonCopyImages.Click += new System.EventHandler(this.buttonCopyImages_Click);
             // 
+            // buttonOpenSiteBaseFolder
+            // 
+            this.buttonOpenSiteBaseFolder.BackColor = System.Drawing.Color.Pink;
+            this.buttonOpenSiteBaseFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOpenSiteBaseFolder.Location = new System.Drawing.Point(334, 623);
+            this.buttonOpenSiteBaseFolder.Name = "buttonOpenSiteBaseFolder";
+            this.buttonOpenSiteBaseFolder.Size = new System.Drawing.Size(157, 23);
+            this.buttonOpenSiteBaseFolder.TabIndex = 63;
+            this.buttonOpenSiteBaseFolder.Text = "Open Folder";
+            this.buttonOpenSiteBaseFolder.UseVisualStyleBackColor = false;
+            this.buttonOpenSiteBaseFolder.Click += new System.EventHandler(this.buttonOpenSiteBaseFolder_Click);
+            // 
             // FormBlogPublish
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(737, 658);
+            this.Controls.Add(this.buttonOpenSiteBaseFolder);
             this.Controls.Add(this.buttonCopyImages);
             this.Controls.Add(this.buttonAddUrlMutationGo);
             this.Controls.Add(this.listBoxUrlMutations);
@@ -309,5 +323,6 @@
         private System.Windows.Forms.TextBox textBoxUrlMutation;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonCopyImages;
+        private System.Windows.Forms.Button buttonOpenSiteBaseFolder;
     }
 }

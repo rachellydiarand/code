@@ -38,6 +38,7 @@
             this.buttonBrowseAudio = new System.Windows.Forms.Button();
             this.buttonRemoveBlogPicture = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBoxSaveAsJpg = new System.Windows.Forms.CheckBox();
             this.hScrollBarImageScrubbingSlider = new System.Windows.Forms.HScrollBar();
             this.textBoxReadTolerancePercentage = new System.Windows.Forms.TextBox();
             this.buttonReadCode = new System.Windows.Forms.Button();
@@ -119,6 +120,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.labelAppVersion = new System.Windows.Forms.Label();
             this.buttonPublish = new System.Windows.Forms.Button();
+            this.buttonOpenSiteBaseFolder = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSource)).BeginInit();
             this.SuspendLayout();
@@ -198,6 +200,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.checkBoxSaveAsJpg);
             this.panel1.Controls.Add(this.hScrollBarImageScrubbingSlider);
             this.panel1.Controls.Add(this.textBoxReadTolerancePercentage);
             this.panel1.Controls.Add(this.buttonReadCode);
@@ -239,6 +242,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(662, 454);
             this.panel1.TabIndex = 10;
+            // 
+            // checkBoxSaveAsJpg
+            // 
+            this.checkBoxSaveAsJpg.AutoSize = true;
+            this.checkBoxSaveAsJpg.Checked = true;
+            this.checkBoxSaveAsJpg.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxSaveAsJpg.Location = new System.Drawing.Point(412, 389);
+            this.checkBoxSaveAsJpg.Name = "checkBoxSaveAsJpg";
+            this.checkBoxSaveAsJpg.Size = new System.Drawing.Size(82, 17);
+            this.checkBoxSaveAsJpg.TabIndex = 39;
+            this.checkBoxSaveAsJpg.Text = "Save as jpg";
+            this.checkBoxSaveAsJpg.UseVisualStyleBackColor = true;
             // 
             // hScrollBarImageScrubbingSlider
             // 
@@ -1034,11 +1049,24 @@
             this.buttonPublish.UseVisualStyleBackColor = false;
             this.buttonPublish.Click += new System.EventHandler(this.buttonPublish_Click);
             // 
+            // buttonOpenSiteBaseFolder
+            // 
+            this.buttonOpenSiteBaseFolder.BackColor = System.Drawing.Color.Pink;
+            this.buttonOpenSiteBaseFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOpenSiteBaseFolder.Location = new System.Drawing.Point(296, 790);
+            this.buttonOpenSiteBaseFolder.Name = "buttonOpenSiteBaseFolder";
+            this.buttonOpenSiteBaseFolder.Size = new System.Drawing.Size(157, 23);
+            this.buttonOpenSiteBaseFolder.TabIndex = 62;
+            this.buttonOpenSiteBaseFolder.Text = "Open Folder";
+            this.buttonOpenSiteBaseFolder.UseVisualStyleBackColor = false;
+            this.buttonOpenSiteBaseFolder.Click += new System.EventHandler(this.buttonOpenSiteBaseFolder_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1388, 826);
+            this.Controls.Add(this.buttonOpenSiteBaseFolder);
             this.Controls.Add(this.buttonPublish);
             this.Controls.Add(this.labelAppVersion);
             this.Controls.Add(this.label3);
@@ -1196,6 +1224,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label labelAppVersion;
         private System.Windows.Forms.Button buttonPublish;
+        private System.Windows.Forms.Button buttonOpenSiteBaseFolder;
+        private System.Windows.Forms.CheckBox checkBoxSaveAsJpg;
     }
 }
 

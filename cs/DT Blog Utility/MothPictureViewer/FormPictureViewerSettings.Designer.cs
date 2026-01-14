@@ -36,6 +36,8 @@
             this.textBoxImageCopyOffsetY = new System.Windows.Forms.TextBox();
             this.textBoxBackgroundColor = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.textBoxSlideshowTimingSeconds = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -107,11 +109,30 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Background Color";
             // 
+            // textBoxSlideshowTimingSeconds
+            // 
+            this.textBoxSlideshowTimingSeconds.Location = new System.Drawing.Point(157, 99);
+            this.textBoxSlideshowTimingSeconds.Name = "textBoxSlideshowTimingSeconds";
+            this.textBoxSlideshowTimingSeconds.Size = new System.Drawing.Size(44, 20);
+            this.textBoxSlideshowTimingSeconds.TabIndex = 9;
+            this.textBoxSlideshowTimingSeconds.TextChanged += new System.EventHandler(this.textBoxSlideshowTimingSeconds_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 102);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(138, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Slideshow Timing (seconds)";
+            // 
             // FormPictureViewerSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(619, 96);
+            this.ClientSize = new System.Drawing.Size(626, 173);
+            this.Controls.Add(this.textBoxSlideshowTimingSeconds);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.textBoxBackgroundColor);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxImageCopyOffsetY);
@@ -138,5 +159,7 @@
         private System.Windows.Forms.TextBox textBoxImageCopyOffsetY;
         private System.Windows.Forms.TextBox textBoxBackgroundColor;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxSlideshowTimingSeconds;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -32,6 +32,14 @@ namespace MothPictureViewer
             {
                 textBoxBackgroundColor.Text = colorStr;
             }
+
+            Debug.WriteLine(Properties.Settings.Default.SlideshowTimingMilliseconds.ToString());
+
+            if(Properties.Settings.Default.SlideshowTimingMilliseconds > 0)
+            {
+                textBoxSlideshowTimingSeconds.Text = ((Properties.Settings.Default.SlideshowTimingMilliseconds / 1000).ToString());
+            }
+            
         }
 
         private void buttonImageSaveDirectoryBrowse_Click(object sender, EventArgs e)
@@ -116,6 +124,19 @@ namespace MothPictureViewer
             catch (Exception ex)
             {
                 Debug.WriteLine("Settings: Color string was invalid.");
+            }
+        }
+
+        private void textBoxSlideshowTimingSeconds_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                double d = double.Parse(textBoxSlideshowTimingSeconds.Text) * 1000;
+                int i = (int) Math.Round(d);
+                Properties.Settings.Default.SlideshowTimingMilliseconds = i;
+                Properties.Settings.Default.Save();
+            } catch (Exception ex){
+                Debug.WriteLine(ex.Message);
             }
         }
     }
