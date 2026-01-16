@@ -276,10 +276,11 @@ namespace MothPictureViewer
         {
             get
             {
-                if(CurrentImage != null)
+                if (CurrentImage != null)
                 {
                     return CurrentImage;
                 }
+                Pb.Name = "Pb";
                 return Pb.Image;
             }
             set
@@ -451,6 +452,7 @@ namespace MothPictureViewer
                     CurrentImage = Pb.Image;
                     StartDragPbStartingPoint = new Point(Pb.Left, Pb.Top);
                     Pb.BringToFront();
+                    menuStrip1.BringToFront();
                     Dragging = true;
                     Cursor = Cursors.Hand;
                 }
